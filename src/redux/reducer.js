@@ -1,51 +1,16 @@
-import { statusFilters } from "./constants";
-const tasksInitialState = [
-    { id: 0, text: "Learn HTML and CSS", completed: true },
-    { id: 1, text: "Get good at JavaScript", completed: true },
-    { id: 2, text: "Master React", completed: false },
-    { id: 3, text: "Discover Redux", completed: false },
-    { id: 4, text: "Build amazing apps", completed: false },
-  ];
+import {initialState} from './store'
 
 
-const tasksReducer = (state = tasksInitialState, action) => {
+ 
+  export function counterReducer(state = initialState, action) {
     switch (action.type) {
-      case "tasks/addTask":
-        return [...state, action.payload];
-      case "tasks/deleteTask":
-        return state.filter(task => task.id !== action.payload);
-      case "tasks/toggleCompleted":
-        return state.map(task => {
-          if (task.id !== action.payload) {
-            return task;
-          }
-          return { ...task, completed: !task.completed };
-        });
+      case 'addContact':
+        return { ...state, value: state.value + 1 }
+      case 'deleteContact':
+        return { ...state, value: state.value - 1 }
+      case 'filterContact':
+        return { ...state, value: state.value + action.payload }
       default:
-        return state;
+        return state
     }
-  };
-  const filtersInitialState = {
-    status: statusFilters.all,
-};
-
-const filtersReducer = (state = filtersInitialState, action) => {
-    switch (action.type) {
-      case "filters/setStatusFilter":
-        return {
-          ...state,
-          status: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-  
-export const rootReducer = (state = {}, action) => {
-    // Повертаємо об'єкт стану
-    return {
-      // Обом редюсерам передаємо тільки частину стану, за яку вони відповідають.
-      tasks: tasksReducer(state.tasks, action),
-      filters: filtersReducer(state.filters, action),
-    };
-  };
+  }
