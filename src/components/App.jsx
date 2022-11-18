@@ -2,18 +2,10 @@
 // import Notification from './Notification/Notification';
 // import ContactList from './ContactList/ContactList';
 // import ContactForm from './ContactForm/ContactForm';
-import SearchBar from './SearchBar/SearchBar';
-
-
+import ContactForm from '../components/ContactForm/ContactForm';
 
 export const App = () => {
-
-
-
-
-  return (
-    <SearchBar />
-  );
+  return <ContactForm />;
 };
 
 export default App;
