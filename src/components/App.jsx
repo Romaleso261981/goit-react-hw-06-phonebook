@@ -1,7 +1,7 @@
-import { FilterInput, NotificationSpan } from './AppStyle.js';
+import {  NotificationSpan } from './AppStyle.js';
 import Notification from './Notification/Notification';
 // import ContactList from './ContactList/ContactList';
-import ContactForm from './ContactForm/ContactForm';
+// import ContactForm from './ContactForm/ContactForm';
 
 const contacts =  [
   { id: 0, text: "Learn HTML and CSS", completed: true },
@@ -18,8 +18,6 @@ export const App = () => {
   const filteredContacts = contacts;
   return (
     <>
-      <ContactForm />
-      <FilterInput />
       {filteredContacts.length > 0 ? (
         {/* <ContactList /> */}
       ) : (
