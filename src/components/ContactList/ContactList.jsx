@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch  } from "react-redux";
 import {
   ContactItem,
   List,
@@ -6,10 +6,11 @@ import {
   SpanNumber,
   ContactBtn,
 } from './ContactList.styled';
-
+import { deleteContact } from "../../redux/actions";
 
 
 export const TaskList = () => {
+  const dispatch = useDispatch()
   // const filter = useSelector(state => state.filter);
   const contacts = useSelector(state => state.contacts);
   console.log(contacts);
@@ -24,9 +25,7 @@ export const TaskList = () => {
           <SpanNumber>{contact.number}</SpanNumber>
           <ContactBtn
             type="button"
-            onClick={(e) => {
-              console.log(e);
-            }}
+            onClick={() => dispatch(deleteContact())}
           >
             Delete
           </ContactBtn>

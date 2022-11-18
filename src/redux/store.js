@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { createAction, createReducer } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
+import { configureStore } from '@reduxjs/toolkit';
+import { myReducer } from './reducer'
 
 export const initialState = {
   contacts: [
@@ -12,17 +12,10 @@ export const initialState = {
   filter: '',
 };
 
-const addContact = createAction('myContact/addContact');
-console.log(addContact(100));
-
-const deleteContact = createAction('myContact/deleteContact');
-console.log(addContact(10));
-
-const myReducer = createReducer(initialState, {
-  [addContact]: (state, action) => console.log(state, action),
-  [deleteContact]: (state, action) => console.log(state, action),
-});
-
 export const store = configureStore({
   reducer: { contacts: myReducer, filter: myReducer },
 });
+
+
+
+
