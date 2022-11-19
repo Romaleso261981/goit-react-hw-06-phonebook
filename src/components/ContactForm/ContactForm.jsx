@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems } from '../../redux/tasksSlice';
-import Notiflix from "notiflix";
+import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 import { addContact } from "../../redux/tasksSlice";
 
@@ -32,12 +32,18 @@ const ContactForm = () => {
 
 const handleSubmitForm = (event) => {
   if (items.find(item => item.name === name)) {
-         Notiflix.Notify.warning('This contact is already exists');
+    Notiflix.Notify.failure(`This contact is already exists`, { position: "top-center", autoClose: 5000 } );
          return;
      }
      event.preventDefault();
-     dispatch (addContact({id: nanoid(), name, number}));
+  dispatch(addContact({ id: nanoid(), name, number }));
+  reset();
  }
+
+ const reset = () => {
+  setName('')
+  setNumber('')
+};
 
 
 
