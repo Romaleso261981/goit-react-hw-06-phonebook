@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
+import { getFilter, getItems } from '../../redux/tasksSlice';
 import {
   ContactItem,
   List,
@@ -7,25 +7,17 @@ import {
   SpanNumber,
   ContactBtn,
 } from './ContactList.styled';
-import { deleteContact } from "../../redux/actions";
-
-export const initialState = {
-  contacts: [
-    { id: nanoid(), name: 'коля мельніков', number: '097 742 4367' },
-    { id: nanoid(), name: 'коля подсобнік', number: '068 823 9986' },
-    { id: nanoid(), name: 'леся', number: '645-17-79' },
-    { id: nanoid(), name: 'Сергій Галепа', number: '067 379 3654' },
-  ],
-  filter: '',
-};
 
 export const TaskList = () => {
-  const dispatch = useDispatch()
-  // const filter = useSelector(state => state.filter);
-  const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
+  const items = useSelector(getItems);
+  console.log(items);
+  const filter = useSelector(getFilter);
+  console.log(filter);
 
-  const visibleTasks = initialState.contacts;
+  const visibleTasks = items.filter(item =>
+    item.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   console.log(visibleTasks);
   return (
     <List>
@@ -33,10 +25,7 @@ export const TaskList = () => {
         <ContactItem key={contact.id}>
           <SpanName>{contact.name}</SpanName>
           <SpanNumber>{contact.number}</SpanNumber>
-          <ContactBtn
-            type="button"
-            onClick={() => dispatch(deleteContact(contact.id))}
-          >
+          <ContactBtn type="button" onClick={e => console.log(e)}>
             Delete
           </ContactBtn>
         </ContactItem>

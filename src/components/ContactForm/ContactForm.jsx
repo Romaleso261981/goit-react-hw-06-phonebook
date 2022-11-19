@@ -1,3 +1,10 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getItems } from '../../redux/tasksSlice';
+import Notiflix from "notiflix";
+import { nanoid } from 'nanoid';
+import { addContact } from "../../redux/tasksSlice";
+
 import {
   InputLabel,
   FormWrap,
@@ -6,32 +13,38 @@ import {
   FormBtn,
   InputForm,
 } from './ContactFormStyle.js';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../../redux/reducer';
 
 const ContactForm = () => {
+
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const items = useSelector(getItems);
   const dispatch = useDispatch();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
-  };
-
-  const onSubmit = event => {
-    event.preventDefault();
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    // dispatch(addTask(form.elements.text.value));
-    reset();
-  };
+    if (name === 'name') {
+        setName(value);
+    } else if (name === 'number') {
+        setNumber(value);
+    }
+}
 
-  const reset = () => {
-    console.log('reset');
-  };
+const handleSubmitForm = (event) => {
+  if (items.find(item => item.name === name)) {
+         Notiflix.Notify.warning('This contact is already exists');
+         return;
+     }
+     event.preventDefault();
+     dispatch (addContact({id: nanoid(), name, number}));
+     setName('');
+     setNumber('');
+ }
+
+
 
   return (
-    <FormWrap onSubmit={onSubmit}>
+    <FormWrap onSubmit={handleSubmitForm}>
       <InputLabel>
         <InputSpanName>Name</InputSpanName>
         <InputForm
@@ -60,31 +73,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
-// import { useDispatch } from "react-redux";
-// import { Button } from "components/Button/Button";
-// import { addTask } from "redux/tasksSlice";
-// import css from "./TaskForm.module.css";
-
-// export const TaskForm = () => {
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = event => {
-//     event.preventDefault();
-//     const form = event.target;
-//     dispatch(addTask(form.elements.text.value));
-//     form.reset();
-//   };
-
-//   return (
-//     <form className={css.form} onSubmit={handleSubmit}>
-//       <input
-//         className={css.field}
-//         type="text"
-//         name="text"
-//         placeholder="Enter task text..."
-//       />
-//       <Button type="submit">Add task</Button>
-//     </form>
-//   );
-// };
