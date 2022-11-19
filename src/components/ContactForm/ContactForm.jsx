@@ -17,34 +17,25 @@ import {
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const items = useSelector(getItems);
   const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
     if (name === 'name') {
-    } else if (value === 'number') {
+      setName(value);
+    } else if (number === 'number') {
+      setNumber(value);
     }
   };
 
   const handleSubmitForm = event => {
-    if (items.find(item => item.name === name)) {
-      Notiflix.Notify.failure(`This contact is already exists`, {
-        position: 'top-center',
-        autoClose: 5000,
-      });
-      return;
-    }
     event.preventDefault();
     dispatch(addContact({ id: nanoid(), name, number }));
-    reset();
-  };
-
-  const reset = () => {
     setName('');
     setNumber('');
   };
 
+  
   return (
     <FormWrap onSubmit={handleSubmitForm}>
       <InputLabel>
