@@ -1,4 +1,5 @@
-import { useSelector, useDispatch  } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { nanoid } from 'nanoid';
 import {
   ContactItem,
   List,
@@ -8,6 +9,15 @@ import {
 } from './ContactList.styled';
 import { deleteContact } from "../../redux/actions";
 
+export const initialState = {
+  contacts: [
+    { id: nanoid(), name: 'коля мельніков', number: '097 742 4367' },
+    { id: nanoid(), name: 'коля подсобнік', number: '068 823 9986' },
+    { id: nanoid(), name: 'леся', number: '645-17-79' },
+    { id: nanoid(), name: 'Сергій Галепа', number: '067 379 3654' },
+  ],
+  filter: '',
+};
 
 export const TaskList = () => {
   const dispatch = useDispatch()
@@ -15,7 +25,7 @@ export const TaskList = () => {
   const contacts = useSelector(state => state.contacts);
   console.log(contacts);
 
-  const visibleTasks = contacts.contacts;
+  const visibleTasks = initialState.contacts;
   console.log(visibleTasks);
   return (
     <List>
@@ -25,7 +35,7 @@ export const TaskList = () => {
           <SpanNumber>{contact.number}</SpanNumber>
           <ContactBtn
             type="button"
-            onClick={() => dispatch(deleteContact())}
+            onClick={() => dispatch(deleteContact(contact.id))}
           >
             Delete
           </ContactBtn>

@@ -1,6 +1,13 @@
-import { nanoid } from 'nanoid';
-import { configureStore } from '@reduxjs/toolkit';
-import { myReducer } from './reducer'
+import { configureStore, nanoid } from "@reduxjs/toolkit";
+import { tasksReducer } from "./tasksSlice";
+import { filtersReducer } from "./filter";
+
+export const store = configureStore({
+  reducer: {
+    tasks: tasksReducer,
+    filters: filtersReducer,
+  },
+});
 
 export const initialState = {
   contacts: [
@@ -11,10 +18,6 @@ export const initialState = {
   ],
   filter: '',
 };
-
-export const store = configureStore({
-  reducer: { contacts: myReducer, filter: myReducer },
-});
 
 
 
