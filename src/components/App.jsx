@@ -1,11 +1,19 @@
 import ContactForm from '../components/ContactForm/ContactForm';
-import {TaskList} from './ContactList/ContactList';
+import { NotificationSpan } from './AppStyle.js';
+import { TaskList } from './ContactList/ContactList';
+import Notification from './Notification/Notification';
 
 export const App = () => {
   return (
     <>
       <ContactForm />
-      <TaskList />
+      {false > 0 ? (
+        <TaskList />
+      ) : (
+        <NotificationSpan>
+          <Notification message="No contacts yet" />
+        </NotificationSpan>
+      )}
     </>
   );
 };

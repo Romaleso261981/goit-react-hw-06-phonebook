@@ -28,6 +28,7 @@ const ContactForm = () => {
 
   const handleSubmitForm = event => {
     event.preventDefault();
+    console.log("dispatch");
     dispatch(addContact({ id: nanoid(), name, number }));
     setName('');
     setNumber('');
