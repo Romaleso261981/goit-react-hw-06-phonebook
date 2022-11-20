@@ -15,8 +15,9 @@ export const TaskList = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
 
-  const visibleTasks = items.filter(item =>
-    item.name.toLowerCase().includes(filter.toLowerCase())
+  const visibleTasks = items.filter(item => {
+    return item.name.toLowerCase().includes(filter.toLowerCase())
+  }
   );
 
   return (

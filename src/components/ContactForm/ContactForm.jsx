@@ -28,7 +28,6 @@ const ContactForm = () => {
 
   const handleSubmitForm = event => {
     event.preventDefault();
-    console.log("dispatch");
     dispatch(addContact({ id: nanoid(), name, number }));
     setName('');
     setNumber('');
@@ -43,6 +42,7 @@ const ContactForm = () => {
           onChange={handleChange}
           type="text"
           name="name"
+          value={name}
         />
       </InputLabel>
       <InputLabel>
@@ -51,6 +51,7 @@ const ContactForm = () => {
           onChange={handleChange}
           type="tel"
           name="number"
+          value={number}
         />
       </InputLabel>
       <FormBtn type="submit">Add contact</FormBtn>
