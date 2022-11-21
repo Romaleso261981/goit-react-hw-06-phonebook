@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <>
       <ContactForm />
-      {items > 0 ? (
+      {items.length > 0 ? (
         <ContactList />
       ) : (
         <NotificationSpan>

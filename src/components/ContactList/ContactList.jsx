@@ -8,7 +8,6 @@ export const ContactList = () => {
   const filter = useSelector(getFilter);
   const filteredItems = items.filter(item => 
     item.name.toLowerCase().includes(filter.toLowerCase()));
-
     return (
       <ul>
         {filteredItems.map(item => (
