@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addContact } from '../../redux/tasksSlice';
+import { addContact, getItems } from '../../redux/tasksSlice';
+import Notiflix from "notiflix";
 
 import {
   InputLabel,
@@ -16,6 +17,7 @@ const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
+  const items = useSelector(getItems);
 
   const handleChange = (event) => {
         const { name, value } = event.target;
@@ -27,6 +29,10 @@ const ContactForm = () => {
     }
 
   const handleSubmitForm = event => {
+    if (items.find(item => item.name === name)) {
+      Notiflix.Notify.warning('This contact is already exists');
+      return;
+  }
     event.preventDefault();
     dispatch(addContact({ id: nanoid(), name, number }));
     setName('');
