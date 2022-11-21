@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filteredContacts, getFilter } from '../../redux/tasksSlice';
+import { filteredContacts} from '../../redux/tasksSlice';
 import { Label,FilterInput, FilterWrap } from './Filter.styled';
 
 const Filter = () => {
-  const filter = useSelector(getFilter);
+  const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
   return (
     <FilterWrap>

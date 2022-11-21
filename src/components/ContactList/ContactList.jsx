@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux';
-import { getFilter, getItems } from '../../redux/tasksSlice';
 import { List } from './ContactList.styled';
 import { ContactListItem } from '../../components/ContactListItem/ContactListItem'
 
 export const ContactList = () => {
-  const items = useSelector(getItems);
-  const filter = useSelector(getFilter);
+  const items = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
   const filteredItems = items.filter(item =>
     item.name.toLowerCase().includes(filter.toLowerCase())
   );

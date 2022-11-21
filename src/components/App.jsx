@@ -1,14 +1,13 @@
 import ContactForm from '../components/ContactForm/ContactForm';
 import { NotificationSpan } from './AppStyle.js';
 import { useSelector } from 'react-redux';
-import { getItems } from '../redux/tasksSlice';
 import { ContactList } from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 import Notification from './Notification/Notification';
 
 export const App = () => {
-  const items = useSelector(getItems);
+  const items = useSelector(state => state.contacts.items);
   return (
     
     <>

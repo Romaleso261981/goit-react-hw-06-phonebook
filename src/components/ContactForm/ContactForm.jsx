@@ -17,7 +17,7 @@ const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const items = useSelector(getItems);
+  const items = useSelector(state => state.contacts.items);
 
   const handleChange = (event) => {
         const { name, value } = event.target;
