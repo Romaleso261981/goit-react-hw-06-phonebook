@@ -31,4 +31,5 @@ const persistConfig = {
   export const persistedAddContactReducer = persistReducer(
     persistConfig,
     contactsSlice.reducer
-  );
+);
+  
