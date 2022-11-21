@@ -3,6 +3,7 @@ import { NotificationSpan } from './AppStyle.js';
 import { useSelector } from 'react-redux';
 import { getItems } from '../redux/tasksSlice';
 import { ContactList } from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
 import Notification from './Notification/Notification';
 
@@ -11,6 +12,13 @@ export const App = () => {
   return (
     <>
       <ContactForm />
+      {items.length > 0 ? (
+        <Filter />
+      ) : (
+        <NotificationSpan>
+        <div>Loding.....</div>
+        </NotificationSpan>
+      )}
       {items.length > 0 ? (
         <ContactList />
       ) : (
