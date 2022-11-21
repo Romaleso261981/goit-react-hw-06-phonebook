@@ -17,14 +17,14 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (number === 'number') {
-      setNumber(value);
+  const handleChange = (event) => {
+        const { name, value } = event.target;
+        if (name === 'name') {
+            setName(value);
+        } else if (name === 'number') {
+            setNumber(value);
+        }
     }
-  };
 
   const handleSubmitForm = event => {
     event.preventDefault();
