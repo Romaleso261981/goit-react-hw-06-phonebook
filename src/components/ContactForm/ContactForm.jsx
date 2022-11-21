@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addContact, getItems } from '../../redux/tasksSlice';
+import { addContact } from '../../redux/tasksSlice';
 import Notiflix from "notiflix";
 
 import {
