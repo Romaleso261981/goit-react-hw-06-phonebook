@@ -10,15 +10,10 @@ import Notification from './Notification/Notification';
 export const App = () => {
   const items = useSelector(getItems);
   return (
+    
     <>
       <ContactForm />
-      {items.length > 0 ? (
-        <Filter />
-      ) : (
-        <NotificationSpan>
-        <div>Loding.....</div>
-        </NotificationSpan>
-      )}
+      {items.length > 0 && <Filter />}
       {items.length > 0 ? (
         <ContactList />
       ) : (
