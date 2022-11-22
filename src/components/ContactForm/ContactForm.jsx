@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { addContact } from '../../redux/tasksSlice';
+import { getItems } from "../../redux/tasksSlice";
 import Notiflix from "notiflix";
 
 import {
@@ -17,7 +18,7 @@ const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const items = useSelector(state => state.contacts.items);
+  const items = useSelector(getItems);
 
   const handleChange = (event) => {
         const { name, value } = event.target;
